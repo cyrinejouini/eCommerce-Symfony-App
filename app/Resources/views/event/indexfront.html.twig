@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des evenements</h1>
+
+
+
+
+    <div id="store">
+        <!-- row -->
+        <div class="row">
+            <!-- Product Single -->
+            {% for event in events %}
+
+
+                <div class="col-md-4 col-sm-6 col-xs-6">
+                    <div class="product product-single">
+                        <div class="product-thumb">
+
+                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> {{ event.nom }}</button>
+                            <img src="{{ asset('upload/'~event.image ) }}" alt="" style="height: 500px">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-price">Nombre des places {{ event.nombreplace }}</h3>
+
+                            <h2 class="product-name"><a href="#">{{event.date|date('Y-m-d')}}</a></h2>
+                            <div class="product-btns">
+                                {{ socialButtons() }}
+
+                                {% if(event.visibi == 1) %}
+                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> <a href="{{ path('reservation_new', { 'id': event.id }) }}"> Reserver</a></button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

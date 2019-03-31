@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="row col-md-6 col-md-offset-2 custyle">
+            <table class="table table-striped custab">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+                </thead>
+                {% for reservation in reservations %}
+
+                <tr>
+                    <td><a href="#">{{ reservation.event.nom }}</a></td>
+                    <td > {{ reservation.quantite }}</a></td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('reservation_annulone', { 'id': reservation.id }) }}"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+
+                     <a href="{{ path('reservation_annulall', { 'id': reservation.id }) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Remove ALL</a></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

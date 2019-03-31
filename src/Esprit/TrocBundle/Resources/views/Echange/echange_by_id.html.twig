@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+{% endblock %}
+{% block title %}
+    ÉCHANGE
+{% endblock %}
+
+
+{% block body %}
+    {% set counter = 0 %}
+    {% for  c in commentaire %}
+        {% set counter = counter + 1 %}
+    {% endfor %}
+
+    {% for key,e in echanges %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Acceuil </a></li>
+                <li><a href="{{path('all_echange')}}">Echange</a></li>
+                <li class="active">{{ e.titreAfficher }}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+        {% set flashbag_notices = app.session.flashbag.get('notice') %}
+        {% if flashbag_notices is not empty  %}
+            {% for notice in flashbag_notices %}
+                <div class="container">
+                    <div class="alert alert-danger " role="alert">
+                        <strong>Erreur !</strong>    {{ notice }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!--  Product Details -->
+                <div class="product product-details clearfix">
+                    <div class="col-md-6">
+                        <div id="product-main-view">
+                            <div class="product-view">
+                                <img src="{{ asset('uploads/brochures/' ~ e.photo) }}" alt="" width="500" height="300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product-body">
+
+                            <h2 class="product-name">{{ e.titreAfficher }}</h2>
+
+                            <h3 class="product-price">Je cherche : {{ e.titreDemande }} </h3>
+
+                            <p><strong>Categorie :</strong> {{ e.categorie }}</p>
+                            <p><strong>Emplacement :</strong> {{ e.emplacement }}</p>
+                            <p>{{ e.description }}</p>
+                            <div class="product-options">
+                                <ul class="size-option">
+                                    <li><span class="text-uppercase">Publié par :  </span></li>
+                                    <li><span class="text-uppercase">{{ e.idUser.nom }} {{ e.idUser.prenom }}      </span></li>
+
+                                </ul>
+                                <ul>
+                                    <div class="product-rating">
+                                        {% for i in 1..5 %}
+                                            <i class="fa {% if i <= e.votes %}fa-star{% else %}fa-star-o empty{% endif %}"></i>
+                                        {% endfor %}
+
+                                    </div>
+                                </ul>
+                                <ul class="color-option">
+                                    <li><span class="text-uppercase">Email :</span></li>
+                                    <li><span class="text-uppercase">{{ e.idUser.email }}</span></li>
+                                </ul>
+                                <ul class="color-option">
+                                    <li><span class="text-uppercase">Ajouter le : </span></li>
+                                    <li><span class="text-uppercase">{{ e.date|date ('Y-m-d') }}</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="product-btns">
+
+                                <div class="pull-right">
+                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="product-tab">
+                            <ul class="tab-nav">
+                                <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+                                <li><a data-toggle="tab" href="#tab2">Commentaire ( {{ counter }} )</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab1" class="tab-pane fade in active">
+                                    <p>{{ e.description }}</p>
+                                </div>
+                                <div id="tab2" class="tab-pane fade in">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+
+                                             {% for c in commentaire %}
+
+                                            <div class="product-reviews">
+                                                <div class="single-review">
+                                                    <div class="review-heading">
+                                                        <div><a href="#"><i class="fa fa-user-o"></i> {{  c.idUser.nom}} {{  c.idUser.prenom}}</a></div>
+                                                        <div><a href="#"><i class="fa fa-clock-o"></i> {{ c.date|date('d/m/Y') }}</a></div>
+                                                        <div class="review-rating pull-right">
+                                                            {% for i in 1..5 %}
+                                                                <i class="fa {% if i <= c.voteCom %}fa-star{% else %}fa-star-o empty{% endif %}"></i>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-body">
+                                                        <p>{{  c.contenu}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             {% endfor %}
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 class="text-uppercase">Ajouter votre commentaire </h4>
+                                            <form class="review-form" method="POST">
+                                                <div class="form-group">
+                                                    <textarea class="input" placeholder="Votre commentaire" id="contenu" name="contenu" required></textarea>
+                                                    <input type="hidden" id="id_echange" name="id_echange" value={{e.id}} />
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-rating">
+                                                        <strong class="text-uppercase">Your Rating : </strong>
+                                                        <div class="stars">
+                                                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+                                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+                                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+                                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+                                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="primary-btn">Ajouter</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Details -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+    {% endfor %}
+
+
+
+
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

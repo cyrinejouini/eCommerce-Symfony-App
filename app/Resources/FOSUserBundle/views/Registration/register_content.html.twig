@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li class="active">Inscription</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'clearfix'}}) }}
+            <div class="col-md-6">
+                <div class="billing-details">
+                    <p>Vous avez Deja compte ? <a href="{{ path ('fos_user_security_login') }}">Connexion</a></p>
+                    <div class="section-title">
+                        <h3 class="title">Inscription </h3>
+                    </div>
+    {{ form_widget(form) }}
+                    <input class="primary-btn"  type="submit" value="Inscription" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="shiping-methods">
+                    <div class="section-title">
+                        <h4 class="title">Bienvenue</h4>
+                    </div>
+
+                    <div>
+                        <a class="logo" href="#">
+                            <img src="{{asset('RessourcesTemplate/img/login.jpg')}}" alt="" height="400 px" width="700 px ">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+{{ form_end(form) }}
+
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->

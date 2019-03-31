@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+{% endblock %}
+{% block title %}
+    Vente
+{% endblock %}
+
+
+{% block body %}
+
+    {% for v in ventes %}
+
+        <!-- BREADCRUMB -->
+        <div id="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="#">Acceuil </a></li>
+                    <li><a href="{{path('all_vente')}}">Vente</a></li>
+                    <li class="active">{{ v.titre }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- section -->
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!--  Product Details -->
+                    <div class="product product-details clearfix">
+                        <div class="col-md-6">
+                            <div id="product-main-view">
+                                <div class="product-view">
+                                    <img src="{{ asset('uploads/brochures/' ~ v.photo) }}" alt="" width="500" height="300">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product-body">
+
+                                <h2 class="product-name">{{ v.titre }}</h2>
+                                <div class="pull-right">
+                                    <h3 class="product-price">Prix : {{ v.prix }} <span class="product-old-price">DT</span></h3>
+
+                                </div>
+
+                                <p><strong>Categorie :</strong> {{ v.categorie }}</p>
+                                <p><strong>Emplacement :</strong> {{ v.emplacement }}</p>
+                                <p>{{ v.description }}</p>
+                                <div class="product-options">
+
+                                    <ul class="size-option">
+                                        <li><span class="text-uppercase">Publié par :  </span></li>
+                                        <li><span class="text-uppercase">{{ v.nom_ann }} {{ v.prenom_ann }}      </span></li>
+                                    </ul>
+
+                                    <ul class="color-option">
+                                        <li><span class="text-uppercase">Email :</span></li>
+                                        <li><span class="text-uppercase">{{ v.mail_ann }}</span></li>
+                                    </ul>
+                                    <ul class="color-option">
+                                        <li><span class="text-uppercase">Ajouter le : </span></li>
+                                        <li><span class="text-uppercase">{{ v.date|date ('Y-m-d') }}</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="product-btns">
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="product-tab">
+                                <ul class="tab-nav">
+                                    <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab1" class="tab-pane fade in active">
+                                        <p>{{ v.description }}</p>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Product Details -->
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /section -->
+    {% endfor %}
+
+
+
+
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

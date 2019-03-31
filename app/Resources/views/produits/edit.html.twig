@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <form id="checkout-form" class="clearfix">
+                <div class="col-md-6">
+                    <i class="billing-details">
+
+                        <div class="section-title">
+                            <h3 class="title">Modifier Produit</h3>
+                        </div>
+
+    {{ form_start(edit_form) }}
+                        <div class="form-group">
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('produits_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

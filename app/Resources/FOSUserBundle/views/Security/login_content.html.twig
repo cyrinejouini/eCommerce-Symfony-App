@@ -1,0 +1,91 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li class="active">Connexion</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+
+
+
+
+<form class="clearfix" action="{{ path("fos_user_security_check") }}" method="post" id="checkout-form">
+
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <div class="col-md-6">
+        <div class="billing-details">
+            <p>Vous n'avez pas encore de compte ? <a href="{{ path ('fos_user_registration_register') }}">Inscription</a></p>
+            <div class="section-title">
+                <h3 class="title">Connexion</h3>
+            </div>
+
+
+    <div class="form-group">
+        <label for="username" class="control-label sr-only">{{ 'security.login.username'|trans }}</label>
+        <input type="text" class="input" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" placeholder="Username" />
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="control-label sr-only">{{ 'security.login.password'|trans }}</label>
+        <input type="password" class="input" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Password" />
+    </div>
+
+    <div class="form-group ">
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        <label for="remember_me" class="fancy-checkbox element-left">
+            {{ 'security.login.remember_me'|trans }}
+            </label>
+    </div>
+
+    <input type="submit" class="primary-btn" id="_submit" name="_submit" value="Connexion" />
+    <div class="form-group clearfix">
+        <label for="remember_me" class="fancy-checkbox element-left">
+        </label>
+    </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="shiping-methods">
+            <div class="section-title">
+                <h4 class="title">Bienvenue</h4>
+            </div>
+
+            <div>
+                <a class="logo" href="#">
+                    <img src="{{asset('RessourcesTemplate/img/login.jpg')}}" alt="" height="400 px" width="700 px ">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

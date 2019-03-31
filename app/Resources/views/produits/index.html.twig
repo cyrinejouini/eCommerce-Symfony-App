@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!
+
+                <!-- STORE -->
+                <div id="store">
+                    <!-- row -->
+                    <div class="row">
+                        {% for produit in produits %}
+
+                            <!-- Product Single -->
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <div class="product product-single">
+                                    <div class="product-thumb">
+                                        <div class="product-label">
+                                            <span>New</span>
+
+                                        </div>
+                                        <a class="main-btn quick-view" href="{{ path('produits_show', { 'idProduit': produit.idProduit }) }}">Quick View</a>
+                                        <img  src="{{ vich_uploader_asset(produit, 'imageFile') }}" alt="{{ produit.image }}" />
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-price">{{ produit.prix }}</del></h3>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o empty"></i>
+                                        </div>
+                                        <h2 class="product-name"><a href="#"> {{ produit.nomProduit }}</a></h2>
+                                        <div class="product-btns">
+                                            <a class="main-btn icon-btn" href="{{ path('wishlist_add', { 'idProduit': produit.idProduit }) }}"><i class="fa fa-heart"></i></a>
+
+                                            <button class="primary-btn add-to-cart" ><i class="fa fa-shopping-cart"><a href="{{ path('panier_ajout', { 'idProduit': produit.idProduit })}}"> </i> Add to Cart</button></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Product Single -->
+                        {% endfor %}
+                        <div class="clearfix visible-md visible-lg"></div>
+
+
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /STORE -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function total(){
+            var cartTotal=0;
+            totals = document.getElementsByName('total');
+            for(i=0;i<totals.length;i++){
+                cartTotal+=parseInt(totals[i].innerHTML);
+            }
+            document.getElementById('cartTotal').innerHTML=cartTotal+" dt"
+        }
+        function calc(id) {
+            var prix = parseInt(document.getElementById('prix'+id).innerHTML);
+            var qt = parseInt(document.getElementById('qt'+id).value);
+            var total = document.getElementById('tot'+id).innerHTML=qt*prix+' dt';
+            this.total();
+        }
+
+        function totalPanier(){
+            var cartTotal=0;
+            totals = document.getElementsByName('totalPanier');
+            for(i=0;i<totals.length;i++){
+                cartTotal+=1;
+            }
+            document.getElementById('cartTotal').innerHTML=cartTotal
+        }
+
+    </script>
+
+{% endblock %}
+
+
+

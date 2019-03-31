@@ -1,0 +1,188 @@
+reservation_annulone:
+    path:     /annulone/{id}
+    defaults: { _controller: EspritTrocBundle:Reservation:annulone }
+reservation_annulall:
+    path:     /annulAll/{id}
+    defaults: { _controller: EspritTrocBundle:Reservation:annulAll }
+reservation_indexuser:
+    path:     /allreservationuser
+    defaults: { _controller: EspritTrocBundle:Reservation:indexuser }
+reservation_index:
+    path:     /reservationevent/{id}
+    defaults: { _controller: EspritTrocBundle:Reservation:index }
+reservation_new:
+    path:     /new/{id}
+    defaults: { _controller: EspritTrocBundle:Reservation:new }
+
+event_front:
+    path:     /eventfrontt
+    defaults: { _controller: EspritTrocBundle:Event:indexfront }
+event_index:
+    path:     /allevent
+    defaults: { _controller: EspritTrocBundle:Event:index }
+event_show:
+    path:     /event/{id}
+    defaults: { _controller: EspritTrocBundle:Event:show }
+event_new:
+    path:     /add
+    defaults: { _controller: EspritTrocBundle:Event:new }
+event_edit:
+    path:     /edit/{id}
+    defaults: { _controller: EspritTrocBundle:Event:edit }
+event_delete:
+    path:     /delete/{id}
+    defaults: { _controller: EspritTrocBundle:Event:delete }
+
+
+
+
+
+esprit_troc_homepage:
+    path:     /
+    defaults: { _controller: EspritTrocBundle:Default:index }
+
+add_achat:
+    path:     /user/add_achat
+    defaults: { _controller: EspritTrocBundle:Achat:AddAchat }
+    methods:  ['GET','POST']
+
+update_achat:
+    path:     /user/update_achat/{id}
+    defaults: { _controller: EspritTrocBundle:Achat:UpdateAchat }
+    methods:  ['GET','POST']
+
+delete_achat:
+    path:     /user/delete_achat/{id}
+    defaults: { _controller: EspritTrocBundle:Achat:DeleteAchat }
+    methods:  ['GET','POST']
+
+all_achat:
+    path:     /user/all_achat
+    defaults: { _controller: EspritTrocBundle:Achat:getAllAchat }
+    methods:  ['GET','POST']
+
+achat_by_id:
+    path:     /user/achat_by_id/{id}
+    defaults: { _controller: EspritTrocBundle:Achat:getAchatById }
+    methods:  ['GET','POST']
+
+achat_by_user:
+    path:     /user/achat_by_user
+    defaults: { _controller: EspritTrocBundle:Achat:AchatByUser }
+    methods:  ['GET','POST']
+
+achat_json:
+    path:     /user/achatJson
+    defaults: { _controller: EspritTrocBundle:Achat:AchatJson }
+    methods:  ['GET','POST']
+
+all_achat_admin:
+    path:     /admin/all_achat_admin
+    defaults: { _controller: EspritTrocBundle:Achat:getAllAchatAdmin }
+
+add_vente:
+    path:     /user/add_vente
+    defaults: { _controller: EspritTrocBundle:Vente:AddVente }
+    methods:  ['GET','POST']
+
+update_vente:
+    path:     /user/update_vente/{id}
+    defaults: { _controller: EspritTrocBundle:Vente:UpdateVente }
+    methods:  ['GET','POST']
+
+delete_vente:
+    path:     /user/delete_vente/{id}
+    defaults: { _controller: EspritTrocBundle:Vente:DeleteVente }
+    methods:  ['GET','POST']
+
+all_vente:
+    path:     /user/all_vente
+    defaults: { _controller: EspritTrocBundle:Vente:getAllVente }
+    methods:  ['GET','POST']
+panier_ajout:
+    path:     /user/all_vente/{id}
+    defaults: { _controller: EspritTrocBundle:Vente:addToPanier }
+    methods:  ['GET','POST']
+wishlist_ajout:
+        path:     /user/all_wish/{id}
+        defaults: { _controller: EspritTrocBundle:Vente:addToWish }
+        methods:  ['GET','POST']
+vente_by_id:
+    path:     /user/vente_by_id/{id}
+    defaults: { _controller: EspritTrocBundle:Vente:getVenteById }
+    methods:  ['GET','POST']
+
+vente_by_user:
+    path:     /user/vente_by_user
+    defaults: { _controller: EspritTrocBundle:Vente:VenteByUser }
+    methods:  ['GET','POST']
+
+vente_json:
+    path:     /user/venteJson
+    defaults: { _controller: EspritTrocBundle:Vente:VenteJson }
+    methods:  ['GET','POST']
+
+all_vente_admin:
+    path:     /admin/all_vente_admin
+    defaults: { _controller: EspritTrocBundle:Vente:getAllVenteAdmin }
+    methods:  ['GET','POST']
+
+delete_vente_admin:
+    path:     /admin/delete_vente_admin/{id}
+    defaults: { _controller: EspritTrocBundle:Vente:DeleteVenteAdmin }
+    methods:  ['GET','POST']
+
+delete_achat_admin:
+    path:     /admin/delete_achat_admin/{id}
+    defaults: { _controller: EspritTrocBundle:Achat:DeleteAchatAdmin }
+    methods:  ['GET','POST']
+
+notfication:
+    path:     /user/notification
+    defaults: { _controller: EspritTrocBundle:Notification:AllNotificationJson }
+    methods:  ['GET','POST']
+
+notfication_status:
+    path:     /user/notification_status
+    defaults: { _controller: EspritTrocBundle:Notification:UpdateNotificationJson }
+    methods:  ['GET','POST']
+
+add_echange:
+    path:     /user/add_echange
+    defaults: { _controller: EspritTrocBundle:Echange:AddEchange }
+    methods:  ['GET','POST']
+
+categorie_search:
+    path:     /categorie
+    defaults: { _controller:  EspritTrocBundle:Echange:searchCategorie }
+    methods:  ['GET','POST']
+
+delete_echange:
+    path:     /user/delete_echange/{id}
+    defaults: { _controller: EspritTrocBundle:Echange:DeleteEchange }
+    methods:  ['GET','POST']
+
+update_echange:
+    path:     /user/update_echange/{id}
+    defaults: { _controller: EspritTrocBundle:Echange:UpdateEchange }
+    methods:  ['GET','POST']
+
+all_echange:
+    path:     /user/all_echange
+    defaults: { _controller: EspritTrocBundle:Echange:getAllEchange }
+    methods:  ['GET','POST']
+
+echange_by_id:
+    path:     /user/echange_by_id/{id}
+    defaults: { _controller: EspritTrocBundle:Echange:getEchangeById }
+    methods:  ['GET','POST']
+
+add_commentaire:
+    path:     /user/add_commentaire/{param}/{c}/{v}
+    defaults: { _controller: EspritTrocBundle:Commentaire:AddCommentaire }
+    methods:  ['GET','POST']
+
+add_vote:
+    path:     /user/add_vote
+    defaults: { _controller: EspritTrocBundle:Vote:AddVote }
+    methods:  ['GET','POST']

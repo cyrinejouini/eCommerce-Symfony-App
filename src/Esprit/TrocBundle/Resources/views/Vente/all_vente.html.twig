@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{% endblock %}
+{% block title %}
+    Vente
+{% endblock %}
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Acceuil </a></li>
+                <li class="active">Vente </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- ASIDE -->
+                <div id="aside" class="col-md-3">
+                    <!-- aside widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Mes Annonces : </h3>
+                        <a href="{{ path ('add_vente') }}" class="primary-btn">Ajouter une Annonce</a>
+                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                            <br>
+                            <br>
+                        <a href="{{ path ('vente_by_user') }}" class="primary-btn">Mes Annonces</a>
+                        {% endif %}
+                    </div>
+                    <!-- /aside widget -->
+
+                    <!-- aside widget -->
+                    <div class="aside" >
+
+
+                    </div>
+                    <!-- /aside widget -->
+
+
+                </div>
+                <!-- /ASIDE -->
+
+                <!-- MAIN -->
+                <div id="main" class="col-md-9">
+                    <!-- store top filter -->
+                    <div class="store-filter clearfix">
+
+                        <div class="pull-right">
+                            <div class="page-filter">
+                                <div class="achat-search">
+
+                                    <form method="POST">
+                                        <input class="input search-input search_input" type="text" list="vente_result" name="vente_search" id="vente_search" oninput='onInput()' placeholder="Nom de l'annonce ">
+                                        <datalist id="vente_result">
+
+                                        </datalist>
+                                        <button  type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                                <span class="text-uppercase">Show:</span>
+                                <select class="input">
+                                    <option value="0">10</option>
+                                    <option value="1">20</option>
+                                    <option value="2">30</option>
+                                </select>
+                            </div>
+                            <ul class="store-pages">
+                                <li><span class="text-uppercase">Page:</span></li>
+                                <li class="active">1</li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /store top filter -->
+
+                    <!-- STORE -->
+                    <div id="store">
+                        <!-- row -->
+                        <div class="row">
+
+                            {% for v in ventes %}
+                                <!-- Product Single -->
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="product product-single">
+                                        <div class="product-thumb">
+                                            <a href="{{path('vente_by_id', {id: v.id})}}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Voir Plus</a>
+                                            <img src="{{ asset('uploads/brochures/' ~ v.photo) }}" alt="" width="200" height="150">
+                                        </div>
+                                        <div class="product-body">
+
+                                            <div class="product-rating">
+                                                <h3 class="product-price" style="color: #dd4d1b">{{ v.prix}} DT</h3>
+                                            </div>
+
+                                            <h2 class="product-name"><a href="#">{{ v.titre }}</a></h2>
+                                            <span class="product-name"><a href="#">Categorie : {{ v.categorie }}</a></span>
+                                            <p class="product-name"><a href="#">Emplacement : {{ v.emplacement }}</a></p>
+                                            <div class="product-btns">
+
+                                                <p>Ajouter le : {{ v.date|date ('Y-m-d') }}</p>
+                                                <p>Par :{{ v.nom_ann }}  {{ v.prenom_ann }}</p>
+                                                <a class="main-btn icon-btn"><a href="{{ path('wishlist_ajout', { 'id': v.id })}}"><i class="fa fa-heart"></i></a>
+
+                                                    <a href="{{path('vente_by_id', {id: v.id})}}" class="primary-btn add-to-cart"><i class="fa fa-plus-circle"></i> Details</a>
+                                                <span> </span>
+                                                <a class="primary-btn add-to-cart"><a href="{{ path('panier_ajout', { 'id': v.id })}}"></i>ajouter au panier</a></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Product Single -->
+                            {% endfor %}
+                            <div class="clearfix visible-sm visible-xs"></div>
+
+                        </div>
+                        <!-- /row -->
+                    </div>
+                    <!-- /STORE -->
+
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+
+                        <div class="pull-right">
+                            <div class="page-filter">
+                                <span class="text-uppercase">Show:</span>
+                                <select class="input">
+                                    <option value="0">10</option>
+                                    <option value="1">20</option>
+                                    <option value="2">30</option>
+                                </select>
+                            </div>
+                            <ul class="store-pages">
+                                <li><span class="text-uppercase">Page:</span></li>
+                                <li class="active">1</li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /store bottom filter -->
+                </div>
+                <!-- /MAIN -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+{% endblock %}
+{% block javascripts %}
+    <script src="{{asset('RessourcesTemplate/js/venteScript.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+esprit_troc_event:
+    resource: "@EspritTrocBundle/Controller/EventController.php"
+    type:     annotation
+
+esprit_troc:
+    resource: "@EspritTrocBundle/Resources/config/routing.yml"
+    prefix:   /esprit
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+user_produits:
+    resource: "@EspritTrocBundle/Controller/ProduitsController.php"
+    type:     annotation
+
+user_panier:
+    resource: "@EspritTrocBundle/Controller/PanierController.php"
+    type:     annotation
+
+user_wishlist:
+    resource: "@EspritTrocBundle/Controller/WishlistController.php"
+    type:     annotation
